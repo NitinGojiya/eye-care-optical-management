@@ -132,56 +132,203 @@
             font-size: 20px;
             border-radius: 5px;
         }
+        .main{
+            position: relative;
+            padding: 125px;
+            width: 100%;
+        }
+        .main-top{
+            display: flex;
+            width: 100%
+        }
+        .thead{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        .th{
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: darkblue;
+            height: 60px;
+        }
+        .th div{
+            width: 150px;
+            height: auto;
+            font-size: 1.3rem;
+            font-weight: 600;
+            
+        }
+        .contain{
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #191c24;
+            color: #ffffff;
+            transition: ease .5s;
+            height: 60px;
+        }
+        .contain div{
+            width: 150px;
+            height: auto;
+            font-size: 1.3rem;
+        }
+        .action-btn{ 
+            border: #000 1px solid ;
+            background-color: darkblue;
+            color: #ffffff;
+        }
+        a{
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-<header class="sticky">
+<header class="sticky" id="home">
         <span class="logo"><span>E</span>ye<span>C</span>are</span>
         <div class="fa-solid fa-bars" id="menu-icon"></div>
         <ul class="navlist">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#staff">Today Apoiment</a></li>
-            <li><a href="#Facilities">Apoiments</a></li>
-            <li><a href="#optical">Completed</a></li>
+            <li><a href="#today">Home</a></li>
+            <li><a href="#today">Today Apoiment</a></li>
+            <li><a href="#all">Apoiments</a></li>
+            <li><a href="#complete">Completed</a></li>
         </ul>
     </header>
-    <section class="main">
-    <?php
-    $con = mysqli_connect('localhost', 'root', '', "dj");
-    $sql = "select * from qurey";
+   
+    <section class="main" id="today">
+        <div class="main-top">
+                <h1 style="color: #fff; text-decoration:underline; margin-bottom:20px;">Today Appointment</h1>
+            </div>
+            <div class="thead">
+        <div class="th">
+            <div>Name</div>
+            <div>Customer Mobile No</div>
+            <div>Date</div>
+            <div>Massage</div>
+            <div>Customer Email</div>
+            
+            <div>Checkup Type</div>
+            <div>Action</div>
+        
+           
+        </div>
+        <?php
+    $con = mysqli_connect('localhost', 'root', '', "eyecare");
+    $d= date("Y-m-d");
+    $sql = "SELECT * FROM `appointment` where date='$d' and status='pending'";
     $result = mysqli_query($con, $sql);
     if ($result) 
     {
         while ($row = mysqli_fetch_array($result)) {
     ?>
-           <table class="main">
-                <tr class="tbody">
-                    <th>Name :</th>
-                    <td><?php echo $row['0']; ?></td>
-                    <th>Customer Mobile No :</th>
-                    <td><?php echo $row['2']; ?></td>
-                    
-                </tr>
-                <tr class="tbody">
-                    <th>Date :</th>
-                    <td><?php echo $row['2']; ?></td>
-                    <th>Massage :</th>
-                    <td><?php echo $row['2']; ?></td>
-                </tr>
-                <tr class="tbody">
-                    <th>Customer Email :</th>
-                    <td><?php echo $row['1']; ?></td>
-                    <th>Checkup Type :</th>
-                    <td><?php echo $row['3']; ?></td>    
-                </tr>
-                        
-            </table>
-
-            <td><button name="cancel" type="submit" class="btn1">Checked</button></td>
-       <?php     
-       }
-    }
+            <div class="contain">
+            <div><?php echo $row['fname'].' '.$row['lname']; ?></div>
+            <div><?php echo $row['contact']; ?></div>
+            <div><?php echo $row['date']; ?></div>
+            <div><?php echo $row['message']; ?></div>
+            <div><?php echo $row['contact']; ?></div>
+        
+            <div><?php echo $row['type']; ?></div>
+            <div><a href="check.php?id=<?php echo $row['id']; ?>"><button >Checked</button></a>
+                </div>
+          
+               
+        </div>
+            <?php
+        }}
         ?>
+    </div>
+        </section>
+
+  <!--appoinments-->
+  <section class="main" id="all">
+        <div class="main-top">
+                <h1 style="color: #fff; text-decoration:underline; margin-bottom:20px;">All Appointment</h1>
+            </div>
+            <div class="thead">
+        <div class="th">
+            <div>Name</div>
+            <div>Customer Mobile No</div>
+            <div>Date</div>
+            <div>Massage</div>
+            <div>Customer Email</div>
+            
+            <div>Checkup Type</div>
+        
+           
+        </div>
+        <?php
+    $con = mysqli_connect('localhost', 'root', '', "eyecare");
+    $d= date("Y-m-d");
+    $sql = "SELECT * FROM `appointment` where status='pending'";
+    $result = mysqli_query($con, $sql);
+    if ($result) 
+    {
+        while ($row = mysqli_fetch_array($result)) {
+    ?>
+            <div class="contain">
+            <div><?php echo $row['fname'].' '.$row['lname']; ?></div>
+            <div><?php echo $row['contact']; ?></div>
+            <div><?php echo $row['date']; ?></div>
+            <div><?php echo $row['message']; ?></div>
+            <div><?php echo $row['contact']; ?></div>
+        
+            <div><?php echo $row['type']; ?></div>
+          
+               
+        </div>
+            <?php
+        }}
+        ?>
+    </div>
+        </section>
+  <!--end appoinments-->
+  <section class="main" id="complete">
+        <div class="main-top">
+                <h1 style="color: #fff; text-decoration:underline; margin-bottom:20px;">Patient History</h1>
+            </div>
+            <div class="thead">
+        <div class="th">
+            <div>Name</div>
+            <div>Customer Mobile No</div>
+            <div>Date</div>
+            <div>Massage</div>
+            <div>Customer Email</div>
+            
+            <div>Checkup Type</div>
+        
+           
+        </div>
+        <?php
+    $con = mysqli_connect('localhost', 'root', '', "eyecare");
+    $d= date("Y-m-d");
+    $sql = "SELECT * FROM `appointment`";
+    $result = mysqli_query($con, $sql);
+    if ($result) 
+    {
+        while ($row = mysqli_fetch_array($result)) {
+    ?>
+            <div class="contain">
+            <div><?php echo $row['fname'].' '.$row['lname']; ?></div>
+            <div><?php echo $row['contact']; ?></div>
+            <div><?php echo $row['date']; ?></div>
+            <div><?php echo $row['message']; ?></div>
+            <div><?php echo $row['contact']; ?></div>
+        
+            <div><?php echo $row['type']; ?></div>
+          
+               
+        </div>
+            <?php
+        }}
+        ?>
+    </div>
         </section>
 </body>
 </html>

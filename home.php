@@ -234,7 +234,7 @@
             <li><a href="#Facilities">Facilities</a></li>
             <li><a href="#optical">Optical Details</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="login.php">Admin</a></li>
+            <li><a href="admin.php">Admin</a></li>
             
         </ul>
     </header>
