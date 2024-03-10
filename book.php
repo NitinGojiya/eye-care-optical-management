@@ -104,6 +104,7 @@
 <?php
 if(isset($_POST['book']))
 {
+    $con=mysqli_connect("localhost","root","","eyecare");
 $fname=$_POST['fname'];
 $lname=$_POST['lname'];
 $mo=$_POST['contact'];
@@ -111,13 +112,13 @@ $email=$_POST['email'];
 $type=$_POST['type'];
 $date=$_POST['date'];
 $message=$_POST['message'];
-echo $fname.'<br>';
-echo $lname.'<br>';
-echo $mo.'<br>';
-echo $email.'<br>';
-echo $type.'<br>';
-echo $date.'<br>';
-echo $message.'<br>';
+$status='pending';
+$sql="INSERT INTO `appointment`(`fname`, `lname`, `contact`, `email`, `type`, `date`, `message`, `status`) VALUES ('$fname','$lname','$mo','$email','$type','$date','$message','$status')";
+$result=mysqli_query($con,$sql);
+if($result)
+{
+header("location:home.php");
+}
 }
 
 ?>
