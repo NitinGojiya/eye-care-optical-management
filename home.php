@@ -232,8 +232,9 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#staff">Our Staff</a></li>
             <li><a href="#Facilities">Facilities</a></li>
-            <li><a href="login.php">Optical Details</a></li>
-            <li><a href="details.php">Contact</a></li>
+            <li><a href="#optical">Optical Details</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="login.php">Admin</a></li>
             
         </ul>
     </header>
