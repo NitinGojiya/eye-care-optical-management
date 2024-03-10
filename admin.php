@@ -194,7 +194,6 @@
         <span class="logo"><span>E</span>ye<span>C</span>are</span>
         <div class="fa-solid fa-bars" id="menu-icon"></div>
         <ul class="navlist">
-            <li><a href="#today">Home</a></li>
             <li><a href="#today">Today Apoiment</a></li>
             <li><a href="#all">Apoiments</a></li>
             <li><a href="#complete">Completed</a></li>
